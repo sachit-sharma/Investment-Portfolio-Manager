@@ -24,7 +24,12 @@ This project is of interest to me because as someone who regularly invests money
 It would ensure that I am meeting my goals of making regular and diverse investments. 
 It would also help me plan for the future by predicting how much I might be able to earn on these investments. 
 
+## User Stories
 
+- I want to be able to add an investment to my list of investments and specify its category, amount, invested date and maturity date.
+- I want to be able to view all my investments. 
+- I want to be able to calculate the projected value of my investment based on a given annual rate of interest.
+- I want to be able to visualise how much money I have invested, by category. (for instance, gold, cryptocurrency,stocks, mutual fund).
 
 
 
