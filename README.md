@@ -1,35 +1,32 @@
 # Investment Portfolio Manager
 
-## A System to Track my Assets
+## A System to Track my Stocks
 
 1. **What will my application do?** 
 
-My application will help a user track how much money they have invested in different avenues such as gold, housing, mutual funds and
-cryptocurrency. On this app, the user would be able to log any new investment or withdrawals they make,along with 
-details such as *when the investment was made, cost price, category of investment, date of maturity* etc.
-They would be able to see the proportion of my investments in different categories, calculate the total value of investment in each category and its projected future value (calculated based on interest rate given by the user).
-
+My application will help a user track how much money they have invested in different stocks.On this app, the user would be able to log any new investment or withdrawals they make,along with 
+details such as stock name, price, number of units purchased, company type etc. Some features of my app would include 
+a visualisation of how much money has been invested in different sectors, calculation of the return on the stock based on the current price given by the user.
+It would allow users to view their total profit on all their stocks. 
 
 2. **Who will use it?** 
 
-- People who invest in equities
-- People who own assets like gold, housing, fixed deposits.
+- People who invest in the stock market.
 
-This app would be most useful for people who regularly make investments in the market and want to diversify their portfolio. Even if someone is not regularly investing money, they can use this app to track their fixed assets such as gold, houses and fixed deposits. 
+This app would be most useful for people who regularly make investments in the market and want to diversify their portfolio. This can help them keep track of how much money they have invested in different avenues. 
 
 
 3. **Why am I doing this?**
 
-This project is of interest to me because as someone who regularly invests money in mutual funds, stocks and gold, a system to track investments would be incredibly useful to me. 
-It would ensure that I am meeting my goals of making regular and diverse investments. 
-It would also help me plan for the future by predicting how much I might be able to earn on these investments. 
+This project is of interest to me because as someone who regularly invests money in the stock market, a system to track investments would be incredibly useful to me. 
+It would ensure that I am meeting my goals of making regular and diverse investments.  It would also help me plan for the future by predicting how much I might be able to earn on these investments. 
 
 ## User Stories
 
-- I want to be able to add an investment to my list of investments and specify its category, amount, invested date and maturity date.
-- I want to be able to view all my investments. 
-- I want to be able to calculate the projected value of my investment based on a given annual rate of interest.
-- I want to be able to visualise how much money I have invested, by category. (for instance, gold, cryptocurrency,stocks, mutual fund).
+- I want to be able to add a stock to my list of investments and specify its category, number of units bought, stock price. 
+- I want to be able to view all my stocks. 
+- I want to be able to calculate the return on the stock after giving my app the  current price of the stock. 
+- I want to be able to visualise how much money I have invested, by category. (for instance, health care sector, tech, pharmaceuticals etc.)
 
 
 
