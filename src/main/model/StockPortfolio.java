@@ -1,37 +1,44 @@
 package model;
 
+
+import java.util.LinkedList;
+
 public class StockPortfolio {
 
-    int realisedProfit;
-
+    double realisedProfit;
+    LinkedList<Stock> portfolio = new LinkedList<>();
 
     // Creates a new empty stock portfolio
     public StockPortfolio() {
+    }
 
+    public double getRealisedProfit() {
+        return realisedProfit;
     }
 
     // REQUIRES: cost > 0
     // MODIFIES: this
-    // EFFECTS:  adds a new stock to the  list of stocks in portfolio
+    // EFFECTS:  adds a new stock to the end of  list of stocks in portfolio
     public void addStock(Stock stock) {
+        portfolio.add(stock);
 
     }
 
     // REQUIRES: stock portfolio needs to be non-empty
     // EFFECTS:  returns the last stock purchase added to the portfolio
     public Stock getLastAddedStock() {
-        return new Stock("X", 10, 50, "HealthCare");
+        return portfolio.getLast();
     }
 
     // EFFECTS: returns the total number of items in the portfolio
     public int getNumItems() {
-        return 0;
+        return portfolio.size();
 
     }
 
     // EFFECTS: returns true if the Portfolio is empty
     public boolean isEmpty() {
-        return false;
+        return portfolio.isEmpty();
     }
 
 
@@ -41,18 +48,34 @@ public class StockPortfolio {
     public void removeStock(int id, double sellingPrice){
     }
 
-    // EFFECTS: Returns the total value of all the stocks in the portfolio.
+    // EFFECTS: Returns the total current value of all the stocks in the portfolio.
     // Each stock's value is the currentPrice * Qty
-    public int getTotalPortfolioValue() {
+    public double getTotalPortfolioValue() {
         return 0;
+    }
+
+    // EFFECTS: Returns the total cost of all the stocks in the portfolio.
+    // Each stock's cost is costPrice * Qty
+    public double getTotalAmountInvested() {
+        double totalAmount = 0;
+        for (Stock s: portfolio) {
+            totalAmount += s.getAmountInvested();
+        }
+        return totalAmount;
     }
 
     // REQUIRES: Category is one of
     // Technology, HealthCare, Materials, Financial, Energy, Utilities, Consumer Staples
-    // EFFECTS: Returns the total value of the stocks in the given category
-    // Each stock's value = currentPrice * Qty
-    public int getTotalAmountByCategory(String category) {
-        return 0;
+    // EFFECTS: Returns the total cost of the stocks in the given category
+    // Each stock's value = costPrice * Qty
+    public double getTotalAmountInvestedByCategory(String category) {
+        double totalAmountInCategory = 0;
+        for (Stock s: portfolio) {
+            if (category == s.getCategory()) {
+                totalAmountInCategory += s.getAmountInvested();
+            }
+        }
+        return totalAmountInCategory;
     }
 
 

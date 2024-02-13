@@ -31,6 +31,11 @@ public class StockTest {
     }
 
     @Test
+    public void testGetCostPrice(){
+        assertEquals(1805, testStock.getAmountInvested());
+    }
+
+    @Test
     public void testSell() {
         testStock.sell();
         assertTrue(testStock.isSold());

@@ -79,6 +79,12 @@ public class Stock {
 
     }
 
+    // EFFECTS: Returns the amount invested in that stock, ie  Qty * getCostPrice()
+    public double getAmountInvested() {
+        return this.costPrice * this.qty;
+
+    }
+
     // REQUIRES qty > 0
     // MODIFIES: this
     // EFFECTS: increases qty by unitsPurchased
@@ -89,6 +95,8 @@ public class Stock {
     // EFFECTS: calculates the percentage return on the stock using formula:
     // percentage return = (current price  - original price)/ original price
 
+
+    // EFFECTS: calculates the percentage profit for the stock
     public double calculatePctReturn() {
         double pctReturn;
         pctReturn = ((getCurrentPrice() - getCostPrice()) * 100 / getCostPrice());

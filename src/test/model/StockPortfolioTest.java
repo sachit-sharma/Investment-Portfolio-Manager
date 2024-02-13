@@ -2,23 +2,31 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StockPortfolioTest {
 
     private StockPortfolio testStockPortfolio;
     private Stock apple;
     private Stock tesla;
-    private Stock gm;
+    private Stock pidilite;
+    private Stock appleSecond;
+    private Stock jnj;
+    private Stock astraZeneca;
 
     @BeforeEach
     public void setup(){
         testStockPortfolio = new StockPortfolio();
         apple = new Stock("Apple", 100, 120, "Technology");
         tesla = new Stock("Tesla", 30, 75, "Technology");
-        gm = new Stock("General Motors", 20, 30, "Consumer Staples");
+        pidilite = new Stock("Pidilite", 20, 30, "Consumer Staples");
+        appleSecond = new Stock("Apple", 50, 130.5, "Technology");
+        jnj = new Stock("Johnson and Johnson", 100, 50.75, "Healthcare");
+        astraZeneca = new Stock("AstraZeneca", 200, 60, "Healthcare");
+
+
     }
 
     @Test
@@ -47,13 +55,80 @@ public class StockPortfolioTest {
         testStockPortfolio.addStock(apple);
         testStockPortfolio.addStock(tesla);
         assertEquals(2, testStockPortfolio.getNumItems());
+        assertEquals(tesla, testStockPortfolio.getLastAddedStock());
     }
+
+    @Test
+    public void testGetNumItemsZero() {
+        assertEquals(0, testStockPortfolio.getNumItems());
+
+    }
+
 
     @Test
     public void testGetNumItemsThree() {
         testStockPortfolio.addStock(apple);
         testStockPortfolio.addStock(tesla);
-        testStockPortfolio.addStock(tesla);
+        assertEquals(tesla, testStockPortfolio.getLastAddedStock());
+        testStockPortfolio.addStock(pidilite);
+        assertEquals(pidilite, testStockPortfolio.getLastAddedStock());
         assertEquals(3, testStockPortfolio.getNumItems());
     }
+
+    @Test
+    public void testIsEmptyTrueCase() {
+        assertTrue(testStockPortfolio.isEmpty());
+    }
+
+    @Test
+    public void testIsEmptyFalseCase() {
+        testStockPortfolio.addStock(apple);
+        assertFalse(testStockPortfolio.isEmpty());
+    }
+
+    @Test
+    public void testTotalAmountInvestedSingleStock() {
+        testStockPortfolio.addStock(apple);
+        assertEquals(12000, testStockPortfolio.getTotalAmountInvested());
+    }
+
+    @Test
+    public void testTotalAmountInvestedThree() {
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.addStock(pidilite);
+        assertEquals(14850, testStockPortfolio.getTotalAmountInvested());
+    }
+
+    @Test
+    public void testTotalAmountInvestedFour() {
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(appleSecond);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.addStock(pidilite);
+        assertEquals(21375, testStockPortfolio.getTotalAmountInvested());
+    }
+
+    @Test
+    public void testTotalAmountInvestedByCategory(){
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(appleSecond);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.addStock(pidilite);
+        testStockPortfolio.addStock(astraZeneca);
+        testStockPortfolio.addStock(jnj);
+        assertEquals(20775, testStockPortfolio.getTotalAmountInvestedByCategory("Technology"));
+        assertEquals(600, testStockPortfolio.getTotalAmountInvestedByCategory(("Consumer Staples")));
+        assertEquals(17075, testStockPortfolio.getTotalAmountInvestedByCategory("Healthcare"));
+    }
+
+    @Test
+    public void testTotalAmountInvestedByCategorySmall(){
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.addStock(appleSecond);
+        assertEquals(20775, testStockPortfolio.getTotalAmountInvestedByCategory("Technology"));
+        assertEquals(0, testStockPortfolio.getTotalAmountInvestedByCategory("Healthcare"));
+    }
+
 }
