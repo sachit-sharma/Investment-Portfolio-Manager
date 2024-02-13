@@ -64,7 +64,18 @@ public class StockPortfolio {
     // EFFECTS: Returns the total current value of all the stocks in the portfolio.
     // Each stock's value is the currentPrice * Qty
     public double getTotalPortfolioValue() {
-        return 0;
+        double totalValue = 0;
+        for (Stock s: portfolio) {
+            totalValue += s.getCurrentPrice() * s.getQuantity();
+        }
+        return totalValue;
+    }
+
+    // REQUIRES: stock with given id is present in portfolio, currentPrice > 0
+    // MODIFIES: this
+    // EFFECTS: updates the currentPrice of the stock with given id
+    public void updateCurrentPrice(int id, double currentPrice) {
+        getStockWithId(id).setCurrentPrice(currentPrice);
     }
 
     // EFFECTS: Returns the total cost of all the stocks in the portfolio.
@@ -91,6 +102,16 @@ public class StockPortfolio {
         return totalAmountInCategory;
     }
 
+    // REQUIRES: Stock with given id is in the portfolio
+    // EFFECTS: Returns stock with given id in the portfolio
+    public Stock getStockWithId(int id) {
+        for (Stock s: portfolio) {
+            if (id == s.getId()) {
+                return s;
+            }
+        }
+        return null;
+    }
 
 
 

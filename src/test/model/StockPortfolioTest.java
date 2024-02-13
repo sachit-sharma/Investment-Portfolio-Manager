@@ -187,7 +187,9 @@ public class StockPortfolioTest {
         assertEquals(600, testStockPortfolio.getTotalAmountInvested());
     }
 
-    @Test void testRemoveStockAll() {
+    @Test
+
+    public void testRemoveStockAll() {
         testStockPortfolio.addStock(apple);
         testStockPortfolio.addStock(appleSecond);
         testStockPortfolio.addStock(tesla);
@@ -198,6 +200,63 @@ public class StockPortfolioTest {
         assertEquals(2, testStockPortfolio.getNumItems());
         assertEquals(-2275, testStockPortfolio.getRealisedProfit());
     }
+
+    @Test
+    public void testUpdateCurrentPrice() {
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.updateCurrentPrice(1, 130);
+        assertEquals(130, apple.getCurrentPrice());
+    }
+
+    @Test
+    public void testUpdateCurrentPriceTwice() {
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.updateCurrentPrice(1, 130);
+        assertEquals(130, testStockPortfolio.getLastAddedStock().getCurrentPrice());
+        testStockPortfolio.updateCurrentPrice(1, 140);
+        assertEquals(140, testStockPortfolio.getLastAddedStock().getCurrentPrice());
+    }
+
+    @Test
+    public void testUpdateCurrentPriceInBigList() {
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.addStock(pidilite);
+        testStockPortfolio.updateCurrentPrice(1, 130);
+        testStockPortfolio.updateCurrentPrice(2, 100);
+        assertEquals(130, apple.getCurrentPrice());
+        assertEquals(100, tesla.getCurrentPrice());
+    }
+
+    @Test
+    public void testGetStockWithId() {
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.addStock(pidilite);
+        assertEquals(apple,testStockPortfolio.getStockWithId(1));
+        assertEquals(pidilite,testStockPortfolio.getStockWithId(3));
+    }
+
+    @Test
+    public void testGetTotalPortfolioValueSingleUpdate() {
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.addStock(pidilite);
+        testStockPortfolio.updateCurrentPrice(3,400);
+        assertEquals(10250, testStockPortfolio.getTotalPortfolioValue());
+    }
+
+    @Test
+    public void testGetTotalPortfolioValueMultipleUpdate() {
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.updateCurrentPrice(1, 130);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.updateCurrentPrice(2, 100);
+        testStockPortfolio.addStock(pidilite);
+        assertEquals(16600,testStockPortfolio.getTotalPortfolioValue());
+    }
+
+
+
 
 
 

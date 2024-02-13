@@ -92,11 +92,11 @@ public class Stock {
         this.qty = this.qty + unitsPurchased;
     }
 
+
+
     // EFFECTS: calculates the percentage return on the stock using formula:
     // percentage return = (current price  - original price)/ original price
 
-
-    // EFFECTS: calculates the percentage profit for the stock
     public double calculatePctReturn() {
         double pctReturn;
         pctReturn = ((getCurrentPrice() - getCostPrice()) * 100 / getCostPrice());
