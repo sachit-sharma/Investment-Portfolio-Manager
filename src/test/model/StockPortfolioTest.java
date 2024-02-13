@@ -131,4 +131,77 @@ public class StockPortfolioTest {
         assertEquals(0, testStockPortfolio.getTotalAmountInvestedByCategory("Healthcare"));
     }
 
+    @Test
+    public void testRemoveStockNoProfit(){
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        assertTrue(testStockPortfolio.removeStock(1, 120));
+        assertEquals(1,testStockPortfolio.getNumItems());
+        assertEquals(tesla, testStockPortfolio.getLastAddedStock());
+        assertEquals(0, testStockPortfolio.getRealisedProfit());
+    }
+
+    @Test
+    public void testRemoveStockProfit(){
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        assertTrue(testStockPortfolio.removeStock(1, 130));
+        assertEquals(1,testStockPortfolio.getNumItems());
+        assertEquals(tesla, testStockPortfolio.getLastAddedStock());
+        assertEquals(1000, testStockPortfolio.getRealisedProfit());
+    }
+
+    @Test
+    public void testRemoveStockTwoProfit(){
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.addStock(pidilite);
+        testStockPortfolio.removeStock(1, 130);
+        testStockPortfolio.removeStock(3, 50);
+        assertEquals(1,testStockPortfolio.getNumItems());
+        assertEquals(tesla, testStockPortfolio.getLastAddedStock());
+        assertEquals(1400, testStockPortfolio.getRealisedProfit());
+    }
+    @Test
+    public void testRemoveStockTwoNetZero(){
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.addStock(pidilite);
+        testStockPortfolio.removeStock(1, 122);
+        testStockPortfolio.removeStock(3, 20);
+        assertEquals(1,testStockPortfolio.getNumItems());
+        assertEquals(tesla, testStockPortfolio.getLastAddedStock());
+        assertEquals(0, testStockPortfolio.getRealisedProfit());
+    }
+
+    @Test
+    public void testRemoveStockTwoLoss() {
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.addStock(pidilite);
+        testStockPortfolio.removeStock(1, 121);
+        testStockPortfolio.removeStock(2, 60);
+        assertEquals(1, testStockPortfolio.getNumItems());
+        assertEquals(-350, testStockPortfolio.getRealisedProfit());
+        assertEquals(pidilite, testStockPortfolio.getLastAddedStock());
+        assertEquals(600, testStockPortfolio.getTotalAmountInvested());
+    }
+
+    @Test void testRemoveStockAll() {
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(appleSecond);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.addStock(pidilite);
+        testStockPortfolio.removeStock(2, 50);
+        testStockPortfolio.removeStock(4, 100);
+        assertEquals(pidilite, testStockPortfolio.getLastAddedStock());
+        assertEquals(2, testStockPortfolio.getNumItems());
+        assertEquals(-2275, testStockPortfolio.getRealisedProfit());
+    }
+
+
+
+
+
+
 }

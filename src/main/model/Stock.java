@@ -3,7 +3,7 @@ package model;
 public class Stock {
 
     private String name;
-    private static int nextStockId = 0;
+    private static int nextStockId = 1;
     private int id;
     private int qty;
     private double costPrice;
@@ -67,7 +67,7 @@ public class Stock {
     // REQUIRES: currentPrice > 0
     // MODIFIES: this
     // EFFECTS: sets the current price of the stock to the given price
-    public void setCurrentPrice(int currentPrice) {
+    public void setCurrentPrice(double currentPrice) {
         this.currentPrice = currentPrice;
 
     }

@@ -45,8 +45,21 @@ public class StockPortfolio {
     // REQUIRES: stock with given id is in portfolio, sellingPrice > 0
     // MODIFIES: this
     // EFFECTS:  removes  stock with given id from portfolio and adds net profit to realised profit
-    public void removeStock(int id, double sellingPrice){
+    // returns true if the stock was removed
+    public boolean removeStock(int id, double sellingPrice) {
+        double stockProfit = 0;
+        for (Stock s: portfolio) {
+            if (id == s.getId()) {
+                s.setCurrentPrice(sellingPrice);
+                stockProfit = s.calculateTotalReturn();
+                realisedProfit += stockProfit;
+                portfolio.remove(s);
+                return true;
+            }
+        }
+        return false;
     }
+
 
     // EFFECTS: Returns the total current value of all the stocks in the portfolio.
     // Each stock's value is the currentPrice * Qty
