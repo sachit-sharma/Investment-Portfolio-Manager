@@ -2,6 +2,7 @@ package model;
 
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class StockPortfolio {
 
@@ -34,6 +35,10 @@ public class StockPortfolio {
     public int getNumItems() {
         return portfolio.size();
 
+    }
+
+    public List<Stock> getPorftolio() {
+        return portfolio;
     }
 
     // EFFECTS: returns true if the Portfolio is empty
@@ -89,7 +94,7 @@ public class StockPortfolio {
     }
 
     // REQUIRES: Category is one of
-    // Technology, HealthCare, Materials, Financial, Energy, Utilities, Consumer Staples
+    // Industrials, Technology, HealthCare, Materials, Financial, Energy, Utilities, Consumer Staples
     // EFFECTS: Returns the total cost of the stocks in the given category
     // Each stock's value = costPrice * Qty
     public double getTotalAmountInvestedByCategory(String category) {
