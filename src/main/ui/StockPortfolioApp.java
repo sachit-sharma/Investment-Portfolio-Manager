@@ -192,9 +192,13 @@ public class StockPortfolioApp {
 
     // EFFECTS: shows a display of all the stocks in the portfolio
     private void viewPortfolio() {
-        for (Stock s: portfolio.getPorftolio()) {
-            System.out.printf("ID: %n", s.getId()), s.getName(), s.getAmountInvested());
-            System.out.printf("ID: %f | Name:%s | Amount Invested: $%f", s.getId(), s.getName(), s.getAmountInvested());
+        System.out.printf("--------------------------------------------------------\n");
+        System.out.printf("                 Your Portfolio                         \n");
+        System.out.printf("--------------------------------------------------------\n");
+        ;
+        System.out.printf("|%5s | %-20s | %-15s| %-25s| %n", "ID", "NAME", "AMOUNT INVESTED", "CATEGORY");
+        for (Stock s : portfolio.getPorftolio()) {
+            System.out.printf("|%5d | %-20s | %-15f| %-25s| %n", s.getId(), s.getName(), s.getAmountInvested(), s.getCategory());
         }
     }
 
