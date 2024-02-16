@@ -129,7 +129,7 @@ public class StockPortfolioApp {
             System.out.println(message);
             String userInput = input.next();
             try {
-                givenValue = Integer.valueOf(userInput) ;
+                givenValue = Integer.valueOf(userInput);
             } catch (NumberFormatException e) {
                 System.out.println("Illegal Value Given");
             }
