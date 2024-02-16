@@ -88,7 +88,7 @@ public class StockPortfolioApp {
         double cost = askForCost();
         String category = askForCategory();
 
-        if (qty > 0.0 && cost > 0.0) {
+        if (qty >= 0.0 && cost >= 0.0) {
             Stock stockToBeAdded = new Stock(name, qty, cost, category);
             portfolio.addStock(stockToBeAdded);
         }
@@ -112,31 +112,49 @@ public class StockPortfolioApp {
     // MODIFIES: this
     // EFFECTS: gets number of units from user
     private int askForUnits() {
-
-        int qty = -1;
-        while (qty < 0) {
-            System.out.println("Enter number of units purchased");
-            qty = input.nextInt();
-            if (qty < 0) {
-                System.out.println("Cannot process a negative quantity");
-            }
-        }
-        return qty;
+        return getPositiveIntegerInput("Enter Number of Units Purchased");
     }
 
     // MODIFIES: this
     // EFFECTS: gets cost from user
     private double askForCost() {
-        double cost = -1;
-        while (cost < 0) {
-            System.out.println("Enter price of 1 unit ");
-            cost = input.nextDouble();
-            if (cost < 0) {
-                System.out.println("Cannot process a negative cost");
-            }
-        }
-        return cost;
+        return getPositiveDoubleInput("Enter Cost of One Stock");
     }
+
+    // MODIFIES: this
+    // EFFECTS: gets  a valid integer input from user
+    private int getPositiveIntegerInput(String message) {
+        int givenValue = -1; // Forces into loop
+        while (givenValue < 0) {
+            System.out.println(message);
+            String userInput = input.next();
+            try {
+                givenValue = Integer.valueOf(userInput) ;
+            } catch (NumberFormatException e) {
+                System.out.println("Illegal Value Given");
+            }
+            System.out.println("Please provide an integer greater than 0");
+        }
+        return givenValue;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: gets  a valid integer input from user
+    private double getPositiveDoubleInput(String message) {
+        double givenValue = -1; // Forces into loop
+        while (givenValue < 0) {
+            System.out.println(message);
+            String userInput = input.next();
+            try {
+                givenValue = Double.valueOf(userInput);
+            } catch (NumberFormatException e) {
+                System.out.println("Illegal Value Given");
+            }
+            System.out.println("Please provide a real number greater than 0");
+        }
+        return givenValue;
+    }
+
 
     // MODIFIES: this
     // EFFECTS: gets the category from user
@@ -269,7 +287,7 @@ public class StockPortfolioApp {
     }
 
     //MODIFIES: this
-    // EFFECTS: allows user to udpate the price of a stock
+    // EFFECTS: allows user to update the price of a stock
     private void updatePrice() {
         int id = 0;
         double currentPrice = -1;

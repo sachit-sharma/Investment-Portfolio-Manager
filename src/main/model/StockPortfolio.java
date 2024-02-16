@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 // Represents a Stock Portfolio that contains an arbitrary number of Stocks
+
 public class StockPortfolio {
 
     double realisedProfit;
