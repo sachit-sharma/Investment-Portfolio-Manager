@@ -26,7 +26,7 @@ It would ensure that I am meeting my goals of making regular and diverse investm
 - I want to be able to add a stock to my list of investments and specify its category, number of units bought, stock price. 
 - I want to be able to sell a stock, adding its profit to my realised profits. 
 - I want to be able to view all my stocks. 
-- I want to be able to calculate the return on the stock after giving my app the current price of the stock. 
+- I want to be able to update the prices of any stock and be given the return on that particular stock.  
 - I want to be able to calculate how much money I have invested, by category. (for instance, health care sector, tech, pharmaceuticals etc.)
 
 

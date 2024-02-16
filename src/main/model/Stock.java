@@ -1,5 +1,10 @@
 package model;
 
+// Represents a Single Stock that is a part of the portfolio.
+// Every stock will have a name,
+// id, number of units of that stock purchased, cost price, current price a
+// and whether it has been bought.
+
 public class Stock {
 
     private String name;

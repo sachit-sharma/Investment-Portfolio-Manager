@@ -7,7 +7,7 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// Stock Portfolio Application
+// Represents the interface of the Stock Portfolio Application
 public class StockPortfolioApp {
     private StockPortfolio portfolio;
     private Scanner input;
@@ -56,6 +56,7 @@ public class StockPortfolioApp {
         System.out.println("\ts -> sell a stock");
         System.out.println("\tv -> view portfolio");
         System.out.println("\tl -> show asset allocation");
+        System.out.println("\tu -> update price of a stock");
         System.out.println("\tq -> quit");
     }
 
@@ -71,11 +72,15 @@ public class StockPortfolioApp {
             viewPortfolio();
         } else if (command.equals("l")) {
             showAssetAllocation();
+        } else if (command.equals("u")) {
+            updatePrice();
         } else {
             System.out.println("Selection not valid...");
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS:  lets user add a stock while specifying name, cost and category
     private void addToPortfolio() {
         String name = askForCompany();
         int qty = askForUnits();
@@ -193,13 +198,9 @@ public class StockPortfolioApp {
     // EFFECTS: conducts a stock removal transaction
     private void removeFromPortfolio() {
 
-        int sellingId = 0;
         int sellingPrice = -1;
         viewPortfolio();
-        while (!portfolio.validID(sellingId)) {
-            System.out.println("Enter a valid ID of Stock to sell");
-            sellingId = input.nextInt();
-        }
+        int sellingId = getSellingId();
         while (sellingPrice < 0) {
             System.out.println("Enter selling price");
             sellingPrice = input.nextInt();
@@ -207,11 +208,21 @@ public class StockPortfolioApp {
 
         portfolio.removeStock(sellingId, sellingPrice);
 
-        System.out.printf("Sold all units of the given stock at %d\n", portfolio.getStockWithId(sellingId), sellingPrice);
+        System.out.printf("Sold all units of the given stock at %d\n", sellingPrice);
         System.out.printf("After this transaction you have\n");
         printAmountInvested();
         printTotalValue();
         printRealisedProfit();
+    }
+
+    // EFFECTS: Gets selling id from user
+    private int getSellingId() {
+        int sellingId = 0;
+        while (!portfolio.validID(sellingId)) {
+            System.out.println("Enter a valid ID of Stock to sell");
+            sellingId = input.nextInt();
+        }
+        return sellingId;
     }
 
     // EFFECTS: shows a display of all the stocks in the portfolio
@@ -220,10 +231,11 @@ public class StockPortfolioApp {
         System.out.printf("                 Your Portfolio                         \n");
         System.out.printf("--------------------------------------------------------\n");
         ;
-        System.out.printf("|%5s | %-20s | %-15s| %-25s| %n", "ID", "NAME", "AMOUNT INVESTED", "CATEGORY");
+        System.out.printf("|%5s | %-20s | %-25s | %-15s| %-20s| %-25s| %n", "ID", "NAME", "COST PER SHARE", "QUANTITY",
+                "AMOUNT INVESTED", "CATEGORY");
         for (Stock s : portfolio.getPorftolio()) {
-            System.out.printf("|%5d | %-20s | %-15f| %-25s| %n", s.getId(),
-                    s.getName(), s.getAmountInvested(), s.getCategory());
+            System.out.printf("|%5d | %-20s | %-25f| %-15d| %-20f| %-25s| %n", s.getId(),
+                    s.getName(), s.getCostPrice(), s.getQuantity(), s.getAmountInvested(), s.getCategory());
         }
     }
 
@@ -252,6 +264,31 @@ public class StockPortfolioApp {
         System.out.printf(" %-25s| %-20f| %n", "Financial",portfolio.getTotalAmountInvestedByCategory("Financial"));
         System.out.printf(" %-25s| %-20f| %n", "Energy",portfolio.getTotalAmountInvestedByCategory("Energy"));
         System.out.printf(" %-25s| %-20f| %n", "Utilities",portfolio.getTotalAmountInvestedByCategory("Utilities"));
-        System.out.printf(" %-25s| %-20f| %n", "Consumer Staples",portfolio.getTotalAmountInvestedByCategory("Consumer Staples"));
+        System.out.printf(" %-25s| %-20f| %n", "Consumer Staples",
+                portfolio.getTotalAmountInvestedByCategory("Consumer Staples"));
+    }
+
+    //MODIFIES: this
+    // EFFECTS: allows user to udpate the price of a stock
+    private void updatePrice() {
+        int id = 0;
+        double currentPrice = -1;
+
+        if (portfolio.isEmpty()) {
+            System.out.println("You have not purchased any stocks");
+        } else {
+            viewPortfolio();
+            id = getSellingId();
+            while (currentPrice < 0) {
+                System.out.println("Enter Current price");
+                currentPrice = input.nextInt();
+            }
+            portfolio.updateCurrentPrice(id, currentPrice);
+            double stockReturn = portfolio.getStockWithId(id).calculateTotalReturn();
+            System.out.printf("Price Updated. The current return is %.2f. \n", stockReturn);
+        }
+        printAmountInvested();
+        printTotalValue();
+        printRealisedProfit();
     }
 }

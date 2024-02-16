@@ -4,6 +4,7 @@ package model;
 import java.util.LinkedList;
 import java.util.List;
 
+// Represents a Stock Portfolio that contains an arbitrary number of Stocks
 public class StockPortfolio {
 
     double realisedProfit;
@@ -117,7 +118,6 @@ public class StockPortfolio {
         }
         return null;
     }
-
 
     // EFFECTS: Returns true if stock with given id in the portfolio
     public boolean validID(int id) {
