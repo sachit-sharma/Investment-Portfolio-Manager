@@ -119,6 +119,17 @@ public class StockPortfolio {
     }
 
 
+    // EFFECTS: Returns true if stock with given id in the portfolio
+    public boolean validID(int id) {
+        for (Stock s: portfolio) {
+            if (id == s.getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
 
 

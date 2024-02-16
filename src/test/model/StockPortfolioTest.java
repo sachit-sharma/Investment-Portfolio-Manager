@@ -255,6 +255,20 @@ public class StockPortfolioTest {
         assertEquals(16600,testStockPortfolio.getTotalPortfolioValue());
     }
 
+    @Test
+    public void testValidIDTrue(){
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        assertTrue(testStockPortfolio.validID(2));
+    }
+    @Test
+    public void testValidIDFalse(){
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        assertFalse(testStockPortfolio.validID(3));
+    }
+
+
 
 
 

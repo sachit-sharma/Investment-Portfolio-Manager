@@ -4,6 +4,7 @@ import model.Stock;
 import model.StockPortfolio;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 // Stock Portfolio Application
@@ -49,14 +50,14 @@ public class StockPortfolioApp {
     // EFFECTS: displays the menu to the user
     // Inspiration from TellerApp
     private void displayMenu() {
-        System.out.println("\nWelcome to My Stock Portfolio!");
+        System.out.println("\nWelcome to My Stock Portfolio App!");
         System.out.println("\nPlease select from:");
         System.out.println("\ta -> add a stock");
-        System.out.println("\tr -> remove a stock");
+        System.out.println("\ts -> sell a stock");
         System.out.println("\tv -> view portfolio");
+        System.out.println("\tl -> show asset allocation");
         System.out.println("\tq -> quit");
     }
-
 
     // MODIFIES: this
     // EFFECTS: processes user command
@@ -64,10 +65,12 @@ public class StockPortfolioApp {
     private void processCommand(String command) {
         if (command.equals("a")) {
             addToPortfolio();
-        } else if (command.equals("w")) {
+        } else if (command.equals("s")) {
             removeFromPortfolio();
         } else if (command.equals("v")) {
             viewPortfolio();
+        } else if (command.equals("l")) {
+            showAssetAllocation();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -186,8 +189,29 @@ public class StockPortfolioApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: conducts a stock removal transaction
     private void removeFromPortfolio() {
 
+        int sellingId = 0;
+        int sellingPrice = -1;
+        viewPortfolio();
+        while (!portfolio.validID(sellingId)) {
+            System.out.println("Enter a valid ID of Stock to sell");
+            sellingId = input.nextInt();
+        }
+        while (sellingPrice < 0) {
+            System.out.println("Enter selling price");
+            sellingPrice = input.nextInt();
+        }
+
+        portfolio.removeStock(sellingId, sellingPrice);
+
+        System.out.printf("Sold all units of the given stock at %d\n", portfolio.getStockWithId(sellingId), sellingPrice);
+        System.out.printf("After this transaction you have\n");
+        printAmountInvested();
+        printTotalValue();
+        printRealisedProfit();
     }
 
     // EFFECTS: shows a display of all the stocks in the portfolio
@@ -198,23 +222,36 @@ public class StockPortfolioApp {
         ;
         System.out.printf("|%5s | %-20s | %-15s| %-25s| %n", "ID", "NAME", "AMOUNT INVESTED", "CATEGORY");
         for (Stock s : portfolio.getPorftolio()) {
-            System.out.printf("|%5d | %-20s | %-15f| %-25s| %n", s.getId(), s.getName(), s.getAmountInvested(), s.getCategory());
+            System.out.printf("|%5d | %-20s | %-15f| %-25s| %n", s.getId(),
+                    s.getName(), s.getAmountInvested(), s.getCategory());
         }
     }
 
     // EFFECTS: prints total amount invested
     private void printAmountInvested() {
-        System.out.printf("Amount Invested: $%.2f\n", portfolio.getTotalAmountInvested());
+        System.out.printf("Total Amount Invested: $%.2f\n", portfolio.getTotalAmountInvested());
     }
 
     // EFFECTS: prints total current value invested
     private void printTotalValue() {
-        System.out.printf("Current Value: $%.2f\n", portfolio.getTotalPortfolioValue());
+        System.out.printf("Total Value of Stocks: $%.2f\n", portfolio.getTotalPortfolioValue());
     }
 
     // EFFECTS: prints realised profit for portfolio
     private void printRealisedProfit() {
-        System.out.printf("Current Profit: %.2f\n", portfolio.getRealisedProfit());
+        System.out.printf("Realised Profit: $%.2f\n", portfolio.getRealisedProfit());
     }
 
+    //EFFECTS: shows a display of the amount invested in all categories
+    private void showAssetAllocation() {
+        System.out.printf(" %-25s| %-20s| %n", "CATEGORY","Total AMOUNT INVESTED");
+        System.out.printf(" %-25s| %-20f| %n", "Industrials",portfolio.getTotalAmountInvestedByCategory("Industrials"));
+        System.out.printf(" %-25s| %-20f| %n", "Technology",portfolio.getTotalAmountInvestedByCategory("Technology"));
+        System.out.printf(" %-25s| %-20f| %n", "HealthCare",portfolio.getTotalAmountInvestedByCategory("HealthCare"));
+        System.out.printf(" %-25s| %-20f| %n", "Materials",portfolio.getTotalAmountInvestedByCategory("Materials"));
+        System.out.printf(" %-25s| %-20f| %n", "Financial",portfolio.getTotalAmountInvestedByCategory("Financial"));
+        System.out.printf(" %-25s| %-20f| %n", "Energy",portfolio.getTotalAmountInvestedByCategory("Energy"));
+        System.out.printf(" %-25s| %-20f| %n", "Utilities",portfolio.getTotalAmountInvestedByCategory("Utilities"));
+        System.out.printf(" %-25s| %-20f| %n", "Consumer Staples",portfolio.getTotalAmountInvestedByCategory("Consumer Staples"));
+    }
 }
