@@ -254,6 +254,7 @@ public class StockPortfolioTest {
     @Test
     public void testGetTotalPortfolioValueSingleUpdate() {
         testStockPortfolio.addStock(tesla);
+        assertEquals(2250, testStockPortfolio.getTotalPortfolioValue());
         testStockPortfolio.addStock(pidilite);
         testStockPortfolio.updateCurrentPrice(3,400);
         assertEquals(10250, testStockPortfolio.getTotalPortfolioValue());
@@ -263,8 +264,10 @@ public class StockPortfolioTest {
     public void testGetTotalPortfolioValueMultipleUpdate() {
         testStockPortfolio.addStock(apple);
         testStockPortfolio.updateCurrentPrice(1, 130);
+        assertEquals(13000,testStockPortfolio.getTotalPortfolioValue());
         testStockPortfolio.addStock(tesla);
         testStockPortfolio.updateCurrentPrice(2, 100);
+        assertEquals(16000,testStockPortfolio.getTotalPortfolioValue());
         testStockPortfolio.addStock(pidilite);
         assertEquals(16600,testStockPortfolio.getTotalPortfolioValue());
     }
