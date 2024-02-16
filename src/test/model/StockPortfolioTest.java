@@ -289,6 +289,30 @@ public class StockPortfolioTest {
         assertFalse(testStockPortfolio.validID(3));
     }
 
+    @Test
+    public void getRealisedProfitZero(){
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        assertEquals(0, testStockPortfolio.getRealisedProfit());
+    }
+
+    @Test
+    public void getRealisedProfitNonZero(){
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.removeStock(1, 200);
+        assertEquals(8000, testStockPortfolio.getRealisedProfit());
+    }
+
+    @Test
+    public void getPortfolioTwo(){
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        assertEquals(apple,testStockPortfolio.getPorftolio().get(0));
+        assertEquals(tesla,testStockPortfolio.getPorftolio().get(1));
+    }
+
+
 
 
 
