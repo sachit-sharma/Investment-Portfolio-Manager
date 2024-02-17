@@ -32,6 +32,18 @@ public class Stock {
         this.qty = qty;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets next stock id
+    public static void resetNextStockId() {
+        nextStockId = 1;
+    }
+
+    // MODIFIES: this
+    // EFFECTS:  resets id to 0
+    public void resetId() {
+        this.nextStockId = 1;
+    }
+
     // EFFECTS: returns the stock name
     public String getName() {
         return this.name;

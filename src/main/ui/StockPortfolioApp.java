@@ -133,7 +133,9 @@ public class StockPortfolioApp {
             } catch (NumberFormatException e) {
                 System.out.println("Illegal Value Given");
             }
-            System.out.println("Please provide an integer greater than 0");
+            if (givenValue < 0) {
+                System.out.println("Please provide an integer greater than 0");
+            }
         }
         return givenValue;
     }
@@ -150,7 +152,9 @@ public class StockPortfolioApp {
             } catch (NumberFormatException e) {
                 System.out.println("Illegal Value Given");
             }
-            System.out.println("Please provide a real number greater than 0");
+            if (givenValue < 0) {
+                System.out.println("Please provide a real number greater than 0");
+            }
         }
         return givenValue;
     }

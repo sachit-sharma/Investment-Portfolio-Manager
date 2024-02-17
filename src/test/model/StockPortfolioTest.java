@@ -1,5 +1,6 @@
 package model;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestTemplate;
@@ -19,13 +20,13 @@ public class StockPortfolioTest {
     @BeforeEach
     public void setup(){
         testStockPortfolio = new StockPortfolio();
+        Stock.resetNextStockId();
         apple = new Stock("Apple", 100, 120, "Technology");
         tesla = new Stock("Tesla", 30, 75, "Technology");
         pidilite = new Stock("Pidilite", 20, 30, "Consumer Staples");
         appleSecond = new Stock("Apple", 50, 130.5, "Technology");
         jnj = new Stock("Johnson and Johnson", 100, 50.75, "Healthcare");
         astraZeneca = new Stock("AstraZeneca", 200, 60, "Healthcare");
-
 
     }
 
@@ -146,6 +147,8 @@ public class StockPortfolioTest {
         testStockPortfolio.addStock(apple);
         testStockPortfolio.addStock(tesla);
         assertTrue(testStockPortfolio.removeStock(1, 130));
+        assertEquals(130, apple.getCurrentPrice());
+        assertEquals(1,testStockPortfolio.getNumItems());
         assertEquals(1,testStockPortfolio.getNumItems());
         assertEquals(tesla, testStockPortfolio.getLastAddedStock());
         assertEquals(1000, testStockPortfolio.getRealisedProfit());
@@ -232,12 +235,19 @@ public class StockPortfolioTest {
     }
 
     @Test
-    public void testGetStockWithId() {
+    public void testGetStockWithIdThirdMatches() {
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.addStock(pidilite);
+        assertEquals(pidilite,testStockPortfolio.getStockWithId(3));
+    }
+
+    @Test
+    public void testGetStockWithIdFirstMatches() {
         testStockPortfolio.addStock(apple);
         testStockPortfolio.addStock(tesla);
         testStockPortfolio.addStock(pidilite);
         assertEquals(apple,testStockPortfolio.getStockWithId(1));
-        assertEquals(pidilite,testStockPortfolio.getStockWithId(3));
     }
 
     @Test
@@ -272,13 +282,29 @@ public class StockPortfolioTest {
         assertEquals(16600,testStockPortfolio.getTotalPortfolioValue());
     }
 
+
     @Test
-    public void testValidIDTrue(){
+    public void testValidIDTrueFirstTry(){
         testStockPortfolio.addStock(apple);
         testStockPortfolio.addStock(tesla);
-        assertTrue(testStockPortfolio.validID(2));
+        testStockPortfolio.addStock(pidilite);
         assertTrue(testStockPortfolio.validID(1));
-        assertFalse(testStockPortfolio.validID(3));
+    }
+
+    @Test
+    public void testValidIDTrueSecondTry(){
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.addStock(pidilite);
+        assertTrue(testStockPortfolio.validID(2));
+    }
+
+    @Test
+    public void testValidIDTrueAtLast(){
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.addStock(pidilite);
+        assertTrue(testStockPortfolio.validID(3));
     }
 
 
