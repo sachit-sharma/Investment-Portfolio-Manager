@@ -49,10 +49,9 @@ public class StockPortfolio {
     }
 
 
-    // REQUIRES: stock with given id is in portfolio, sellingPrice > 0
-    // MODIFIES: this
+
     // EFFECTS:  removes  stock with given id from portfolio and adds net profit to realised profit
-    // returns true if the stock was removed
+    // returns true if the stock was removed, false if there is no stock with the given id in the porftolio
     public boolean removeStock(int id, double sellingPrice) {
         double stockProfit = 0;
         for (Stock s: portfolio) {
@@ -109,8 +108,7 @@ public class StockPortfolio {
         return totalAmountInCategory;
     }
 
-    // REQUIRES: Stock with given id is in the portfolio
-    // EFFECTS: Returns stock with given id in the portfolio
+    // EFFECTS: Returns stock with given id in the portfolio. Returns null if none was found
     public Stock getStockWithId(int id) {
         for (Stock s: portfolio) {
             if (id == s.getId()) {

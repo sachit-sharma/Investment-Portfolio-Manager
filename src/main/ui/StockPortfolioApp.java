@@ -220,29 +220,24 @@ public class StockPortfolioApp {
     // EFFECTS: conducts a stock removal transaction
     private void removeFromPortfolio() {
 
-        int sellingPrice = -1;
         viewPortfolio();
-        int sellingId = getSellingId();
-        while (sellingPrice < 0) {
-            System.out.println("Enter selling price");
-            sellingPrice = input.nextInt();
-        }
+        int sellingId = getValidStockID("Enter valid ID of stock to sell");
+        double sellingPrice = getPositiveDoubleInput("Enter Selling Price");
 
         portfolio.removeStock(sellingId, sellingPrice);
 
-        System.out.printf("Sold all units of the given stock at %d\n", sellingPrice);
-        System.out.printf("After this transaction you have\n");
+        System.out.println("Sold all units of the given stock at $ " + sellingPrice);
+        System.out.println("After this transaction you have\n");
         printAmountInvested();
         printTotalValue();
         printRealisedProfit();
     }
 
     // EFFECTS: Gets selling id from user
-    private int getSellingId() {
+    private int getValidStockID(String message) {
         int sellingId = 0;
         while (!portfolio.validID(sellingId)) {
-            System.out.println("Enter a valid ID of Stock to sell");
-            sellingId = input.nextInt();
+            sellingId = getPositiveIntegerInput(message);
         }
         return sellingId;
     }
@@ -253,11 +248,12 @@ public class StockPortfolioApp {
         System.out.printf("                 Your Portfolio                         \n");
         System.out.printf("--------------------------------------------------------\n");
         ;
-        System.out.printf("|%5s | %-20s | %-25s | %-15s| %-20s| %-25s| %n", "ID", "NAME", "COST PER SHARE", "QUANTITY",
-                "AMOUNT INVESTED", "CATEGORY");
+        System.out.printf("|%5s | %-20s | %-18s |%-15s| %-18s| %-18s| %-25s| %n", "ID", "NAME", "COST PER SHARE",
+                "QUANTITY", "AMOUNT INVESTED", "CURRENT VALUE", "CATEGORY");
         for (Stock s : portfolio.getPorftolio()) {
-            System.out.printf("|%5d | %-20s | %-25f| %-15d| %-20f| %-25s| %n", s.getId(),
-                    s.getName(), s.getCostPrice(), s.getQuantity(), s.getAmountInvested(), s.getCategory());
+            System.out.printf("|%5d | %-20s | %-18.2f |%-15d| %-18.2f| %-18.2f| %-25s| %n", s.getId(),
+                    s.getName(), s.getCostPrice(), s.getQuantity(), s.getAmountInvested(),
+                    s.getCurrentValue(), s.getCategory());
         }
     }
 
@@ -293,18 +289,15 @@ public class StockPortfolioApp {
     //MODIFIES: this
     // EFFECTS: allows user to update the price of a stock
     private void updatePrice() {
-        int id = 0;
-        double currentPrice = -1;
+        int id;
+        double currentPrice;
 
         if (portfolio.isEmpty()) {
             System.out.println("You have not purchased any stocks");
         } else {
             viewPortfolio();
-            id = getSellingId();
-            while (currentPrice < 0) {
-                System.out.println("Enter Current price");
-                currentPrice = input.nextInt();
-            }
+            id = getValidStockID("Enter Valid ID of Stock to update");
+            currentPrice = getPositiveDoubleInput("Enter New Price");
             portfolio.updateCurrentPrice(id, currentPrice);
             double stockReturn = portfolio.getStockWithId(id).calculateTotalReturn();
             System.out.printf("Price Updated. The current return is %.2f. \n", stockReturn);

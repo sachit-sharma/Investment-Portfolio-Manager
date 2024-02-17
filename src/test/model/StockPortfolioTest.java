@@ -143,6 +143,13 @@ public class StockPortfolioTest {
     }
 
     @Test
+    public void testRemoveStockNoSuchStock(){
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        assertFalse(testStockPortfolio.removeStock(4, 120));
+    }
+
+    @Test
     public void testRemoveStockProfit(){
         testStockPortfolio.addStock(apple);
         testStockPortfolio.addStock(tesla);
@@ -259,6 +266,15 @@ public class StockPortfolioTest {
         assertEquals(pidilite,testStockPortfolio.getStockWithId(3));
         assertEquals(tesla,testStockPortfolio.getStockWithId(2));
     }
+
+    @Test
+    public void testGetStockWithIdTestNull() {
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        testStockPortfolio.addStock(pidilite);
+        assertEquals(null,testStockPortfolio.getStockWithId(4));
+    }
+
 
 
     @Test

@@ -42,15 +42,28 @@ public class StockTest {
     }
 
     @Test
-    public void calculatePctReturn() {
+    public void testGetCurrentValue() {
+        testStock.setCurrentPrice(100);
+        assertEquals(1000, testStock.getCurrentValue());
+    }
+
+    @Test
+    public void testCalculatePctReturn() {
         testStock.setCurrentPrice(361);
         assertEquals(100, testStock.calculatePctReturn());
     }
 
     @Test
-    public void calculateTotalReturn() {
+    public void testCalculateTotalReturn() {
         testStock.setCurrentPrice(361);
         assertEquals(1805, testStock.calculateTotalReturn());
+    }
+
+    @Test
+    public void testResetId() {
+        assertEquals(2, testStock.getNextStockId());
+        Stock.resetNextStockId();
+        assertEquals(1, testStock.getNextStockId());
     }
 }
 

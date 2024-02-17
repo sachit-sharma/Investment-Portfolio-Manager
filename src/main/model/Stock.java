@@ -38,11 +38,6 @@ public class Stock {
         nextStockId = 1;
     }
 
-    // MODIFIES: this
-    // EFFECTS:  resets id to 0
-    public void resetId() {
-        this.nextStockId = 1;
-    }
 
     // EFFECTS: returns the stock name
     public String getName() {
@@ -63,6 +58,11 @@ public class Stock {
     public int getQuantity() {
         return this.qty;
 
+    }
+
+    // EFFECTS: returns nextStockId
+    public int getNextStockId() {
+        return nextStockId;
     }
 
     //EFFECTS: returns !buying
@@ -99,6 +99,11 @@ public class Stock {
     // EFFECTS: Returns the amount invested in that stock, ie  Qty * getCostPrice()
     public double getAmountInvested() {
         return this.costPrice * this.qty;
+
+    }
+
+    public double getCurrentValue() {
+        return this.currentPrice * this.qty;
 
     }
 
