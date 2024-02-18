@@ -3,7 +3,7 @@ package ui;
 import model.Stock;
 import model.StockPortfolio;
 
-import java.sql.SQLOutput;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
