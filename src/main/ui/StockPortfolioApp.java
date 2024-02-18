@@ -244,9 +244,9 @@ public class StockPortfolioApp {
 
     // EFFECTS: shows a display of all the stocks in the portfolio
     private void viewPortfolio() {
-        System.out.printf("--------------------------------------------------------\n");
-        System.out.printf("                 Your Portfolio                         \n");
-        System.out.printf("--------------------------------------------------------\n");
+        System.out.printf("----------------------------------------------------------------------------------------\n");
+        System.out.printf("                                             Your Portfolio                             \n");
+        System.out.printf("----------------------------------------------------------------------------------------\n");
         ;
         System.out.printf("|%5s | %-20s | %-18s |%-15s| %-18s| %-18s| %-25s| %n", "ID", "NAME", "COST PER SHARE",
                 "QUANTITY", "AMOUNT INVESTED", "CURRENT VALUE", "CATEGORY");
