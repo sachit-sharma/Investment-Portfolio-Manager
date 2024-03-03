@@ -61,7 +61,6 @@ public class StockTest {
 
     @Test
     public void testResetId() {
-        assertEquals(2, testStock.getNextStockId());
         Stock.resetNextStockId();
         assertEquals(1, testStock.getNextStockId());
     }

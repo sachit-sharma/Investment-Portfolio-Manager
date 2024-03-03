@@ -5,6 +5,8 @@ package model;
 // id, number of units of that stock purchased, cost price, current price a
 // and whether it has been bought.
 
+import org.json.JSONObject;
+
 public class Stock {
 
     private String name;
@@ -20,6 +22,8 @@ public class Stock {
     // EFFECTS creates a new stock with the given name, the number of units purchased, cost price of a single stock
     // and stock category. The new stock has a unique transaction id, currentPrice is equal to cost price and
     // buying = true.
+    // Category is one of
+    // Industrials, Technology, HealthCare, Materials, Financial, Energy, Utilities, Consumer Staples
 
     public Stock(String name, int qty, double costPrice, String category) {
 
@@ -102,6 +106,7 @@ public class Stock {
 
     }
 
+    // EFFECTS: Returns the currentValue of that stock, ie  Qty * CurrentPrice
     public double getCurrentValue() {
         return this.currentPrice * this.qty;
 
@@ -131,6 +136,15 @@ public class Stock {
         return (this.getCurrentPrice() - this.getCostPrice()) * this.getQuantity();
     }
 
-
-
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("id", id);
+        json.put("qty", qty);
+        json.put("category", category);
+        json.put("costPrice", costPrice);
+        json.put("currentPrice", currentPrice);
+        json.put("buying", buying);
+        return json;
+    }
 }

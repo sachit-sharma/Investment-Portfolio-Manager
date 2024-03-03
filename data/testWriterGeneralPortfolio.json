@@ -1,0 +1,23 @@
+{
+    "portfolio": [
+        {
+            "qty": 10,
+            "name": "apple",
+            "costPrice": 20,
+            "buying": true,
+            "currentPrice": 20,
+            "id": 1,
+            "category": "Technology"
+        },
+        {
+            "qty": 20,
+            "name": "tesla",
+            "costPrice": 30.5,
+            "buying": true,
+            "currentPrice": 30.5,
+            "id": 2,
+            "category": "Consumer Staples"
+        }
+    ],
+    "realisedProfit": 0
+}

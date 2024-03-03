@@ -36,6 +36,12 @@ public class StockPortfolioTest {
     }
 
     @Test
+    public void testSetRealisedProfit(){
+        testStockPortfolio.setRealisedProfit(100.5);
+        assertEquals(100.5, testStockPortfolio.getRealisedProfit());
+    }
+
+    @Test
     public void testAddStockOnce() {
         testStockPortfolio.addStock(apple);
         assertEquals(apple, testStockPortfolio.getLastAddedStock());

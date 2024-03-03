@@ -1,22 +1,34 @@
 package model;
 
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.LinkedList;
 import java.util.List;
 
 // Represents a Stock Portfolio that contains an arbitrary number of Stocks
 
-public class StockPortfolio {
+public class StockPortfolio implements Writable {
 
     double realisedProfit;
     LinkedList<Stock> portfolio = new LinkedList<>();
 
     // Creates a new empty stock portfolio
     public StockPortfolio() {
+        Stock.resetNextStockId();
     }
+
+
+
 
     public double getRealisedProfit() {
         return realisedProfit;
+    }
+
+    public void setRealisedProfit(double rp) {
+        this.realisedProfit = rp;
     }
 
     // REQUIRES: cost > 0
@@ -129,13 +141,23 @@ public class StockPortfolio {
     }
 
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("realisedProfit", realisedProfit);
+        json.put("portfolio", stocksToJson());
+        return json;
+    }
 
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray stocksToJson() {
+        JSONArray jsonArray = new JSONArray();
 
+        for (Stock s : portfolio) {
+            jsonArray.put(s.toJson());
+        }
 
-
-
-
-
-
-
+        return jsonArray;
+    }
 }
+

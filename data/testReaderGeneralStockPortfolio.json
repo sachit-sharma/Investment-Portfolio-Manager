@@ -1,0 +1,23 @@
+{
+  "portfolio": [
+    {
+      "name": "apple",
+      "id": 1,
+      "qty": 20 ,
+      "category": "Technology" ,
+      "costPrice": 14.5,
+      "currentPrice": 13.5,
+      "buying" : true
+    },
+    {
+      "name": "tesla",
+      "id": 2,
+      "qty": 20 ,
+      "category": "Technology",
+      "costPrice": 100,
+      "currentPrice": 200,
+      "buying" : true
+    }
+  ],
+  "realisedProfit": 100.5
+}

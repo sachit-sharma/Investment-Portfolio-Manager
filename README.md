@@ -28,6 +28,7 @@ It would ensure that I am meeting my goals of making regular and diverse investm
 - I want to be able to view all my stocks. 
 - I want to be able to update the prices of any stock and be shown the return on that particular stock.  
 - I want to be able to calculate how much money I have invested, by category. (for instance, health care sector, tech, pharmaceuticals etc.)
-
+- I want to be able to have the option to load my stock portfolio from file and resume where I left off. 
+- When I quit the application, I want to have the option to save the state of my stock portfolio (all stocks with their characteristics). 
 
 
