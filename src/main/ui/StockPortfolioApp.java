@@ -2,15 +2,22 @@ package ui;
 
 import model.Stock;
 import model.StockPortfolio;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 // Represents the interface of the Stock Portfolio Application
 public class StockPortfolioApp {
+    private static final String JSON_STORE = "./data/portfolio.json";
     private StockPortfolio portfolio;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: Runs the stock portfolio tracker application
     public StockPortfolioApp() {
@@ -45,6 +52,8 @@ public class StockPortfolioApp {
         portfolio = new StockPortfolio(); // A new Stock Portfolio
         input = new Scanner(System.in);   // Inspiration from TellerApp
         input.useDelimiter("\n"); // Inspiration from TellerApp
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     // EFFECTS: displays the menu to the user
@@ -57,6 +66,8 @@ public class StockPortfolioApp {
         System.out.println("\tv -> view portfolio");
         System.out.println("\tl -> show asset allocation");
         System.out.println("\tu -> update price of a stock");
+        System.out.println("\tp -> save stock portfolio to file");
+        System.out.println("\td -> load stock portfolio from file");
         System.out.println("\tq -> quit");
     }
 
@@ -74,6 +85,10 @@ public class StockPortfolioApp {
             showAssetAllocation();
         } else if (command.equals("u")) {
             updatePrice();
+        } else if (command.equals("p")) {
+            savePortfolio();
+        } else if (command.equals("d"))  {
+            loadPortfolio();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -286,7 +301,7 @@ public class StockPortfolioApp {
                 portfolio.getTotalAmountInvestedByCategory("Consumer Staples"));
     }
 
-    //MODIFIES: this
+    // MODIFIES: this
     // EFFECTS: allows user to update the price of a stock
     private void updatePrice() {
         int id;
@@ -305,5 +320,32 @@ public class StockPortfolioApp {
         printAmountInvested();
         printTotalValue();
         printRealisedProfit();
+    }
+
+    // Reference: JsonSerializationDemo (https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo)
+    // EFFECTS: saves portfolio to file
+    public void savePortfolio() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(portfolio);
+            jsonWriter.close();
+            System.out.println("Saved " + "portftolio" + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+
+    // Reference: JsonSerializationDemo (https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo)
+    // MODIFIES: this
+    // EFFECTS: loads portfolio from file
+    public void loadPortfolio() {
+        try {
+            portfolio = jsonReader.read();
+            System.out.println("Loaded " + "portfolio" + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+
     }
 }
