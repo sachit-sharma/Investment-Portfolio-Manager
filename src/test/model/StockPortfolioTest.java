@@ -1,9 +1,7 @@
 package model;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,6 +42,14 @@ public class StockPortfolioTest {
     @Test
     public void testAddStockOnce() {
         testStockPortfolio.addStock(apple);
+        assertEquals(apple, testStockPortfolio.getLastAddedStock());
+        assertEquals(1, testStockPortfolio.getNumItems());
+    }
+
+    @Test
+    public void testSetId() {
+        testStockPortfolio.addStock(apple);
+
         assertEquals(apple, testStockPortfolio.getLastAddedStock());
         assertEquals(1, testStockPortfolio.getNumItems());
     }
@@ -356,8 +362,8 @@ public class StockPortfolioTest {
     public void getPortfolioTwo(){
         testStockPortfolio.addStock(apple);
         testStockPortfolio.addStock(tesla);
-        assertEquals(apple,testStockPortfolio.getPorftolio().get(0));
-        assertEquals(tesla,testStockPortfolio.getPorftolio().get(1));
+        assertEquals(apple,testStockPortfolio.getPortfolio().get(0));
+        assertEquals(tesla,testStockPortfolio.getPortfolio().get(1));
     }
 
 

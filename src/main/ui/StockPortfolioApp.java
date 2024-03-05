@@ -265,7 +265,7 @@ public class StockPortfolioApp {
         ;
         System.out.printf("|%5s | %-20s | %-18s |%-15s| %-18s| %-18s| %-25s| %n", "ID", "NAME", "COST PER SHARE",
                 "QUANTITY", "AMOUNT INVESTED", "CURRENT VALUE", "CATEGORY");
-        for (Stock s : portfolio.getPorftolio()) {
+        for (Stock s : portfolio.getPortfolio()) {
             System.out.printf("|%5d | %-20s | %-18.2f |%-15d| %-18.2f| %-18.2f| %-25s| %n", s.getId(),
                     s.getName(), s.getCostPrice(), s.getQuantity(), s.getAmountInvested(),
                     s.getCurrentValue(), s.getCategory());
@@ -346,6 +346,5 @@ public class StockPortfolioApp {
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
-
     }
 }

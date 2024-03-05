@@ -42,7 +42,6 @@ public class Stock {
         nextStockId = 1;
     }
 
-
     // EFFECTS: returns the stock name
     public String getName() {
         return this.name;
@@ -51,6 +50,12 @@ public class Stock {
     // EFFECTS: returns the stock transaction id
     public int getId() {
         return this.id;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets the stock transaction id
+    public void setId(int id) {
+        this.id = id;
     }
 
     // EFFECTS: returns the cost at which stock is bought

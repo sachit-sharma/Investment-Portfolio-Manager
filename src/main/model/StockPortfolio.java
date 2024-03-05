@@ -20,9 +20,6 @@ public class StockPortfolio implements Writable {
         Stock.resetNextStockId();
     }
 
-
-
-
     public double getRealisedProfit() {
         return realisedProfit;
     }
@@ -51,7 +48,7 @@ public class StockPortfolio implements Writable {
 
     }
 
-    public List<Stock> getPorftolio() {
+    public List<Stock> getPortfolio() {
         return portfolio;
     }
 
@@ -113,7 +110,7 @@ public class StockPortfolio implements Writable {
     public double getTotalAmountInvestedByCategory(String category) {
         double totalAmountInCategory = 0;
         for (Stock s: portfolio) {
-            if (category == s.getCategory()) {
+            if (category.equals(s.getCategory())) {
                 totalAmountInCategory += s.getAmountInvested();
             }
         }

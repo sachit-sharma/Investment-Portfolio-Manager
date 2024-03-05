@@ -42,7 +42,7 @@ class JsonReaderTest extends JsonTest {
         try {
             StockPortfolio sp = reader.read();
             assertEquals(100.5, sp.getRealisedProfit());
-            List<Stock> stocks= sp.getPorftolio();
+            List<Stock> stocks= sp.getPortfolio();
             assertEquals(2, stocks.size());
             checkStock("apple", 1, 20, 14.5, "Technology", 13.5, true, stocks.get(0));
             checkStock("tesla", 2, 20, 100, "Technology", 200, true, stocks.get(1));

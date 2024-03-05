@@ -42,6 +42,13 @@ public class StockTest {
     }
 
     @Test
+    public void testSetId() {
+        testStock.setId(3);
+        assertEquals(3,testStock.getId());
+    }
+
+
+    @Test
     public void testGetCurrentValue() {
         testStock.setCurrentPrice(100);
         assertEquals(1000, testStock.getCurrentValue());

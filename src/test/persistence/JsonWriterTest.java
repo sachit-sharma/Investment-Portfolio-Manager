@@ -2,7 +2,6 @@ package persistence;
 
 import model.Stock;
 import model.StockPortfolio;
-import persistence.JsonWriter;
 
 import org.junit.jupiter.api.Test;
 
@@ -59,7 +58,7 @@ class JsonWriterTest extends JsonTest {
             JsonReader reader = new JsonReader("./data/testWriterGeneralPortfolio.json");
             sp = reader.read();
             assertEquals(0, sp.getRealisedProfit());
-            List<Stock> stocks = sp.getPorftolio();
+            List<Stock> stocks = sp.getPortfolio();
             assertEquals(2, stocks.size());
             checkStock("apple", 1, 10, 20, "Technology", 20, true, stocks.get(0));
             checkStock("tesla", 2, 20, 30.5, "Consumer Staples", 50, true, stocks.get(1));
@@ -86,7 +85,7 @@ class JsonWriterTest extends JsonTest {
             JsonReader reader = new JsonReader("./data/testWriterMoreComplicatedGeneralPortfolio.json");
             sp = reader.read();
             assertEquals(1390, sp.getRealisedProfit());
-            List<Stock> stocks = sp.getPorftolio();
+            List<Stock> stocks = sp.getPortfolio();
             assertEquals(1, stocks.size());
             checkStock("apple", 1, 10, 20, "Technology", 30, true, stocks.get(0));
 
