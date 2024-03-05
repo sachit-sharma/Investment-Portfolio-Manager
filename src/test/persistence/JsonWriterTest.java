@@ -50,6 +50,7 @@ class JsonWriterTest extends JsonTest {
             StockPortfolio sp = new StockPortfolio();
             sp.addStock(new Stock("apple", 10, 20, "Technology"));
             sp.addStock(new Stock("tesla", 20, 30.5, "Consumer Staples"));
+            sp.updateCurrentPrice(2, 50);
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralPortfolio.json");
             writer.open();
             writer.write(sp);
@@ -61,7 +62,34 @@ class JsonWriterTest extends JsonTest {
             List<Stock> stocks = sp.getPorftolio();
             assertEquals(2, stocks.size());
             checkStock("apple", 1, 10, 20, "Technology", 20, true, stocks.get(0));
-            checkStock("tesla", 2, 20, 30.5, "Consumer Staples", 30.5, true, stocks.get(1));
+            checkStock("tesla", 2, 20, 30.5, "Consumer Staples", 50, true, stocks.get(1));
+
+        } catch (IOException e) {
+            fail("Exception should not have been thrown");
+        }
+    }
+
+    @Test
+    void testWriteMoreComplicatedGeneralPortfolio() {
+        try {
+            StockPortfolio sp = new StockPortfolio();
+            sp.addStock(new Stock("apple", 10, 20, "Technology"));
+            sp.addStock(new Stock("tesla", 20, 30.5, "Consumer Staples"));
+            sp.updateCurrentPrice(2, 50);
+            sp.removeStock(2, 100);
+            sp.updateCurrentPrice(1, 30);
+            JsonWriter writer = new JsonWriter("./data/testWriterMoreComplicatedGeneralPortfolio.json");
+            writer.open();
+            writer.write(sp);
+            writer.close();
+
+            JsonReader reader = new JsonReader("./data/testWriterMoreComplicatedGeneralPortfolio.json");
+            sp = reader.read();
+            assertEquals(1390, sp.getRealisedProfit());
+            List<Stock> stocks = sp.getPorftolio();
+            assertEquals(1, stocks.size());
+            checkStock("apple", 1, 10, 20, "Technology", 30, true, stocks.get(0));
+
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

@@ -329,7 +329,7 @@ public class StockPortfolioApp {
             jsonWriter.open();
             jsonWriter.write(portfolio);
             jsonWriter.close();
-            System.out.println("Saved " + "portftolio" + " to " + JSON_STORE);
+            System.out.println("Saved " + "portfolio" + " to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }

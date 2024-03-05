@@ -14,7 +14,7 @@
             "name": "tesla",
             "costPrice": 30.5,
             "buying": true,
-            "currentPrice": 30.5,
+            "currentPrice": 50,
             "id": 2,
             "category": "Consumer Staples"
         }

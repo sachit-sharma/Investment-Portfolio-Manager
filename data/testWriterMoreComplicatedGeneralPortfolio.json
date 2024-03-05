@@ -1,0 +1,12 @@
+{
+    "portfolio": [{
+        "qty": 10,
+        "name": "apple",
+        "costPrice": 20,
+        "buying": true,
+        "currentPrice": 30,
+        "id": 1,
+        "category": "Technology"
+    }],
+    "realisedProfit": 1390
+}
