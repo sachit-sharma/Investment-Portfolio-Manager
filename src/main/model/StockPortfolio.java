@@ -8,22 +8,25 @@ import persistence.Writable;
 import java.util.LinkedList;
 import java.util.List;
 
-// Represents a Stock Portfolio that contains an arbitrary number of Stocks
+// Represents a Stock Portfolio that contains an arbitrary number of Stocks, along with the realised profit.
+// Realised profit refers to the profit already realised by selling stocks.
 
 public class StockPortfolio implements Writable {
 
     double realisedProfit;
     LinkedList<Stock> portfolio = new LinkedList<>();
 
-    // Creates a new empty stock portfolio
+    // EFFECTS: Creates a new empty stock portfolio
     public StockPortfolio() {
         Stock.resetNextStockId();
     }
 
+    // EFFECTS: returns realised profit
     public double getRealisedProfit() {
         return realisedProfit;
     }
 
+    // EFFECTS: sets realised profit
     public void setRealisedProfit(double rp) {
         this.realisedProfit = rp;
     }
@@ -48,6 +51,7 @@ public class StockPortfolio implements Writable {
 
     }
 
+    // EFFECTS: returns the list of stocks in portfolio
     public List<Stock> getPortfolio() {
         return portfolio;
     }
@@ -56,7 +60,6 @@ public class StockPortfolio implements Writable {
     public boolean isEmpty() {
         return portfolio.isEmpty();
     }
-
 
 
     // EFFECTS:  removes  stock with given id from portfolio and adds net profit to realised profit

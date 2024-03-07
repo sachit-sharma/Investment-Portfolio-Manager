@@ -1,8 +1,8 @@
 package model;
 
 // Represents a Single Stock that is a part of the portfolio.
-// Every stock will have a name,
-// id, number of units of that stock purchased, cost price, current price a
+// Every stock will have a name, unique id,
+// number of units of that stock purchased, cost price, current price, category a
 // and whether it has been bought.
 
 import org.json.JSONObject;
