@@ -142,6 +142,7 @@ public class StockPortfolio implements Writable {
 
 
     @Override
+    // EFFECTS: returns this as JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("realisedProfit", realisedProfit);

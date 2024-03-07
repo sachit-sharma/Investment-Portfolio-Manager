@@ -8,6 +8,7 @@ import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -270,6 +271,7 @@ public class StockPortfolioApp {
                     s.getName(), s.getCostPrice(), s.getQuantity(), s.getAmountInvested(),
                     s.getCurrentValue(), s.getCategory());
         }
+        printRealisedProfit();
     }
 
     // EFFECTS: prints total amount invested

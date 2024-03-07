@@ -141,6 +141,7 @@ public class Stock {
         return (this.getCurrentPrice() - this.getCostPrice()) * this.getQuantity();
     }
 
+    // EFFECTS: returns this as JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
