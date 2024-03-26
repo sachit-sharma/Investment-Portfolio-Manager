@@ -258,11 +258,13 @@ public class StockPortfolioUI extends JFrame {
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Please enter a valid number",
                         "Error", JOptionPane.ERROR_MESSAGE);
-            } if (givenInput <= 0) {
+            }
+            if (givenInput <= 0) {
                 JOptionPane.showMessageDialog(null, "Please enter a valid number",
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } return givenInput;
+        }
+        return givenInput;
     }
 
 
@@ -456,6 +458,6 @@ public class StockPortfolioUI extends JFrame {
 
     }
 
-    }
+}
 
 
