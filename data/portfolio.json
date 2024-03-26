@@ -1,23 +1,12 @@
 {
-    "portfolio": [
-        {
-            "qty": 200,
-            "name": "Compamny2",
-            "costPrice": 20,
-            "buying": true,
-            "currentPrice": 20,
-            "id": 1,
-            "category": "Utilities"
-        },
-        {
-            "qty": 21,
-            "name": "Company2",
-            "costPrice": 4,
-            "buying": true,
-            "currentPrice": 4,
-            "id": 2,
-            "category": "Consumer Staples"
-        }
-    ],
+    "portfolio": [{
+        "qty": 12,
+        "name": "Sachit",
+        "costPrice": 100,
+        "buying": true,
+        "currentPrice": 100,
+        "id": 1,
+        "category": "Materials"
+    }],
     "realisedProfit": 0
 }

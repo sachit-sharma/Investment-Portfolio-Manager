@@ -32,3 +32,12 @@ It would ensure that I am meeting my goals of making regular and diverse investm
 - I want to have the option to save the state of my stock portfolio (all stocks with their characteristics). 
 
 
+# Instructions for Grader
+
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by clicking the
+  add stock button
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by selecting
+  which category of stocks you want to see from a drop down menu.
+- You can locate my visual component by...
+- You can save the state of my application from the pop window that comes try quitting.
+- You can reload the state of my application from the pop up window that comes when you start the application. 

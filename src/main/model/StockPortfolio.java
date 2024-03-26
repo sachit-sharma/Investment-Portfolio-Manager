@@ -160,5 +160,17 @@ public class StockPortfolio implements Writable {
 
         return jsonArray;
     }
+
+    // REQUIRES
+    // EFFECTS: returns a 2-D array of stocks for tabulating it
+
+    public Object [][] stocksToArray() {
+        Object [][] data = new Object [this.getNumItems()][7];
+
+        for (int i = 0; i < getNumItems(); i++) {
+            data[i] = getPortfolio().get(i).featuresToArray();
+        }
+        return data;
+    }
 }
 

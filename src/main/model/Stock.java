@@ -7,6 +7,8 @@ package model;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class Stock {
 
     private String name;
@@ -153,4 +155,18 @@ public class Stock {
         json.put("buying", buying);
         return json;
     }
+
+    // EFFETCS: returns an arraylist of id, name, category, costPrice, currentPrice, AmountInvested, CurrentValue
+    public Object [] featuresToArray() {
+        ArrayList<String> features = new ArrayList<>();
+        features.add(String.valueOf(getId()));
+        features.add(String.valueOf(getName()));
+        features.add(String.valueOf(getCostPrice()));
+        features.add(String.valueOf(getCurrentPrice()));
+        features.add(String.valueOf(getQuantity()));
+        features.add(String.valueOf(getAmountInvested()));
+        features.add(String.valueOf(getCategory()));
+        return features.toArray();
+    }
+
 }
