@@ -156,7 +156,7 @@ public class Stock {
         return json;
     }
 
-    // EFFETCS: returns an arraylist of id, name, category, costPrice, currentPrice, AmountInvested, CurrentValue
+    // EFFETCS: returns an arraylist of id, name,  costPrice, currentPrice,Quantity, AmountInvested, category
     public Object [] featuresToArray() {
         ArrayList<String> features = new ArrayList<>();
         features.add(String.valueOf(getId()));

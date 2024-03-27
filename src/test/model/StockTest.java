@@ -71,5 +71,13 @@ public class StockTest {
         Stock.resetNextStockId();
         assertEquals(1, testStock.getNextStockId());
     }
+
+    @Test
+    public void testFeaturesToArray() {
+        Stock.resetNextStockId();
+        Stock tesla = new Stock("Tesla", 10, 100, "Technology");
+        assertArrayEquals(tesla.featuresToArray(), new Object []{"1", "Tesla","100.0", "100.0","10", "1000.0","Technology"});
+
+    }
 }
 
