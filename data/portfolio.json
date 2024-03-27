@@ -1,12 +1,12 @@
 {
     "portfolio": [{
-        "qty": 12,
-        "name": "Sachit",
+        "qty": 15,
+        "name": "apple",
         "costPrice": 100,
         "buying": true,
         "currentPrice": 100,
         "id": 1,
-        "category": "Materials"
+        "category": "Technology"
     }],
     "realisedProfit": 0
 }

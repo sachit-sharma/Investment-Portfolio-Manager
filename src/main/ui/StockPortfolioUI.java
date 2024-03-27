@@ -18,7 +18,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-
+// Represents the GUI of the Stock Portfolio Application
 public class StockPortfolioUI extends JFrame {
 
     private static final String JSON_STORE = "./data/portfolio.json";
@@ -29,10 +29,6 @@ public class StockPortfolioUI extends JFrame {
     private static final int TABLE_WIDTH = 600;
     private static final int LEFT_PADDING = 70;
     private static final int ROWHEIGHT = 40;
-    private static final int CENTER = SwingConstants.CENTER;
-    private static final int TOP = SwingConstants.TOP;
-    private static final int FILTERING_MENU_WIDTH = WIDTH - TABLE_WIDTH - LEFT_PADDING;
-    private CategoriesSearchTool categoriesSearchTool;
     private StockPortfolio portfolio;
     private JTable table;
     private TableRowSorter tableRowSorter;
@@ -40,21 +36,24 @@ public class StockPortfolioUI extends JFrame {
     private JScrollPane scrollPane;
     private JPanel bottomPanel;
     private JPanel rightPanel;
-    private JPanel tablePanel;
-    private JButton addStockButton;
     private JLabel realisedProfitLabel;
     private GridLayout rowlayout;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
 
-    // EFFECTS: creates the menu bar, and adds the table of stocks in portfolio
+    // MODIFIES: this;
+    // EFFECTS:  creates an instance of the GUI of stock portfolio app and initialises the elements
     public StockPortfolioUI() {
         portfolio = new StockPortfolio();
         initialise();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+        rowlayout = new GridLayout(1, 2);
     }
 
-    //EFFECTS: initialises the home screen display
+    // MODIFIES: this
+    // EFFECTS: initialises the home screen with the menu, table, bottom and
     private void initialise() {
         setLayout(new BorderLayout());
         setTitle("Stock Portfolio App");
@@ -62,13 +61,12 @@ public class StockPortfolioUI extends JFrame {
         addMenu();
         addBottomPanel();
         addTable();
-        rowlayout = new GridLayout(1, 2);
-        addCategories();
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
+        addRightPanel();
         setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS:  adds the bottom panel that displays realised profit to the main frame
     private void addBottomPanel() {
         bottomPanel = new JPanel();
         bottomPanel.setPreferredSize(new Dimension(200, ROWHEIGHT));
@@ -80,6 +78,7 @@ public class StockPortfolioUI extends JFrame {
     }
 
 
+    // MODIFIES: this
     // EFFECTS: creates the menu bar and adds it to the frame
     private void addMenu() {
         JMenuBar menuBar = new JMenuBar();
@@ -97,12 +96,9 @@ public class StockPortfolioUI extends JFrame {
         statsMenu.add(assetAllocationMenu);
         setJMenuBar(menuBar);
 
-        JMenu stockMenu = new JMenu("Stock");
-        statsMenu.setMnemonic('t');
-        menuBar.add(stockMenu);
-        setJMenuBar(menuBar);
     }
 
+    // MODIFIES: this
     // EFFECTS: creates a new JTable adds the table to the frame
     private void addTable() {
 
@@ -110,7 +106,6 @@ public class StockPortfolioUI extends JFrame {
         tableRowSorter = new TableRowSorter(model);
         table = new JTable(model);
         table.setRowSorter(tableRowSorter);
-
         table.setSize(TABLE_WIDTH, TABLE_HEIGHT);
         table.setFont(new Font("SansSerif", Font.PLAIN, 15));
         JTableHeader header = table.getTableHeader();
@@ -119,9 +114,11 @@ public class StockPortfolioUI extends JFrame {
         scrollPane = new JScrollPane(table);
         scrollPane.setSize(TABLE_WIDTH, TABLE_HEIGHT);
         this.add(scrollPane);
+
     }
 
 
+    // MODIFIES: this
     // EFFECTS: sets column widths of the table
     private void setColumnWidths() {
         table.getColumnModel().getColumn(0).setPreferredWidth(30);
@@ -149,7 +146,9 @@ public class StockPortfolioUI extends JFrame {
         return tableModel;
     }
 
-    public void addCategories() {
+    // MODIFIES: this
+    // EFFECTS:  adds a panel to the right of main frame with search, load and save buttons
+    public void addRightPanel() {
 
         rightPanel = new JPanel(new FlowLayout());
         rightPanel.setPreferredSize(new Dimension(200,  200));
@@ -169,6 +168,8 @@ public class StockPortfolioUI extends JFrame {
         addSaveButton();
         searchCategoriesButton.addActionListener(new ActionListener() {
             @Override
+            //MOFIFIES: this
+            //EFFECTS: assigns a new filter to the table object to filter based on the text in JTextField
             public void actionPerformed(ActionEvent e) {
                 String searchText = categoriesSearchField.getText();
                 tableRowSorter.setRowFilter(new TableRowFilter(searchText));
@@ -176,6 +177,7 @@ public class StockPortfolioUI extends JFrame {
         });
     }
 
+    // MODIFIES:  this
     // EFFECTS: adds the save button to the rightPanel
     private void addSaveButton() {
         JButton saveButton = new JButton("Save");
@@ -185,30 +187,6 @@ public class StockPortfolioUI extends JFrame {
         JButton loadButton = new JButton("Load");
         loadButton.addActionListener(new LoadListener());
         rightPanel.add(loadButton);
-    }
-
-    // REQUIRES: category is one of Industrials, Technology, HealthCare, Materials, Financial, Energy, Utilities,
-    // Consumer Staples
-    // EFFECTS: returns a checkbox for filtering according to a category
-    public JCheckBox getCheckBox(String category) {
-        JCheckBox check = new JCheckBox(category);
-        check.setHorizontalAlignment(CENTER);
-        check.setVerticalAlignment(TOP);
-        return check;
-    }
-
-    // REQUIRES: c is one of the valid stock categories
-    // MODIFIES: this
-    // EFFECTS: returns a JPanel with a category label and checkbox
-
-    public JPanel makeOneCheckbox(String c) {
-        JPanel checkBoxRow = new JPanel(rowlayout);
-        checkBoxRow.setPreferredSize(new Dimension(FILTERING_MENU_WIDTH, ROWHEIGHT));
-        JLabel name = new JLabel(c);
-        JCheckBox checkbox = getCheckBox("");
-        checkBoxRow.add(name);
-        checkBoxRow.add(checkbox);
-        return checkBoxRow;
     }
 
 
@@ -227,6 +205,7 @@ public class StockPortfolioUI extends JFrame {
         theMenu.add(menuItem);
     }
 
+    // EFFECTS: prompts user for string input until valid input is given and returns given input
     private String getStringInput(String message, String title) {
         String givenInput = "";
         while (givenInput.length() < 1) {
@@ -240,6 +219,7 @@ public class StockPortfolioUI extends JFrame {
         return givenInput;
     }
 
+    // EFFECTS: prompts user to select a stock category and returns the String value of the selection
     private String getCategoryInput() {
         String [] categories = getListOfStockCategories();
         int categorySelection  = JOptionPane.showOptionDialog(null,
@@ -249,6 +229,7 @@ public class StockPortfolioUI extends JFrame {
         return actualCategory;
     }
 
+    // EFFECTS: prompts user give a positive integer and returns the given input
     private int getPositiveIntegerInput(String message, String title) {
         int givenInput = -1;
         while (givenInput <= 0) {
@@ -289,9 +270,8 @@ public class StockPortfolioUI extends JFrame {
         return givenInput;
     }
 
-    // REQUIRES: 0<= category <= 7
-    // EFFECTS: Returns the corresponding Category String
-
+    // REQUIRES: 0 <= category <= 7
+    // EFFECTS: Returns the corresponding Category String according to the selection
     private String parseCategory(int category) {
         if (category == 0) {
             return "Industrials";
@@ -333,10 +313,7 @@ public class StockPortfolioUI extends JFrame {
     }
 
 
-
-
     // Represents the actions to be taken when user wants to add stock
-
     private class AddStockAction extends AbstractAction {
 
         AddStockAction() {
@@ -402,6 +379,7 @@ public class StockPortfolioUI extends JFrame {
         }
     }
 
+    // Represents the action to be performed when user wants to save to file
     private class SaveListener implements ActionListener {
 
         @Override
