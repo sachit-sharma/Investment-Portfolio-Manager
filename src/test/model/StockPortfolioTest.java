@@ -366,6 +366,16 @@ public class StockPortfolioTest {
         assertEquals(tesla,testStockPortfolio.getPortfolio().get(1));
     }
 
+    @Test
+    public void testStocksToArray(){
+        testStockPortfolio.addStock(apple);
+        testStockPortfolio.addStock(tesla);
+        Object [][] data =  testStockPortfolio.stocksToArray();
+        Object [] teslaArray = new Object []{"2", "Tesla","75.0", "75.0","30", "2250.0","Technology"};
+        Object [] appleArray = new Object []{"1", "Apple","120.0", "120.0","100", "12000.0","Technology"};
+        assertArrayEquals(data, new Object [][] {appleArray, teslaArray});
+    }
+
 
 
 

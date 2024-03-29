@@ -1,12 +1,32 @@
 {
-    "portfolio": [{
-        "qty": 15,
-        "name": "apple",
-        "costPrice": 100,
-        "buying": true,
-        "currentPrice": 100,
-        "id": 1,
-        "category": "Technology"
-    }],
-    "realisedProfit": 0
+    "portfolio": [
+        {
+            "qty": 100,
+            "name": "Apple",
+            "costPrice": 10,
+            "buying": true,
+            "currentPrice": 10,
+            "id": 1,
+            "category": "Technology"
+        },
+        {
+            "qty": 13,
+            "name": "Apple2",
+            "costPrice": 198,
+            "buying": true,
+            "currentPrice": 198,
+            "id": 2,
+            "category": "HealthCare"
+        },
+        {
+            "qty": 3,
+            "name": "apple",
+            "costPrice": 1008,
+            "buying": true,
+            "currentPrice": 1008,
+            "id": 3,
+            "category": "Energy"
+        }
+    ],
+    "realisedProfit": 420
 }

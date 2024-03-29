@@ -158,6 +158,7 @@ public class StockPortfolioUI extends JFrame {
 
         JTextField categoriesSearchField = new JTextField(15);
         JButton searchCategoriesButton = new JButton("Search Categories");
+        categoriesSearchField.setEnabled(true);
         searchCategoriesButton.setPreferredSize(new Dimension(150, 50));
         categoriesSearchField.setPreferredSize((new Dimension(200,50)));
         rightPanel.add(categoriesSearchField);
@@ -320,6 +321,8 @@ public class StockPortfolioUI extends JFrame {
             super("Add Stock");
         }
 
+        // MODIFIES: this
+        // EFFECTS: creates a new stock based on given input and adds it to portfolio
         @Override
         public void actionPerformed(ActionEvent evt) {
             String name = getStringInput("Name", "Enter company name");
@@ -345,6 +348,8 @@ public class StockPortfolioUI extends JFrame {
             super("Sell Stock");
         }
 
+        // MODIFIES: this
+        // EFFECTS:  asks user for the stock to be removed and removes it from portfolio
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -383,6 +388,7 @@ public class StockPortfolioUI extends JFrame {
     private class SaveListener implements ActionListener {
 
         @Override
+        // EFFECTS: performs the action of saving the portfolio to file
         public void actionPerformed(ActionEvent e) {
             savePortfolio();
         }
