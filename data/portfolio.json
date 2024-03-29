@@ -26,7 +26,16 @@
             "currentPrice": 1008,
             "id": 3,
             "category": "Energy"
+        },
+        {
+            "qty": 104,
+            "name": "Apple4",
+            "costPrice": 14,
+            "buying": true,
+            "currentPrice": 14,
+            "id": 4,
+            "category": "Energy"
         }
     ],
-    "realisedProfit": 420
+    "realisedProfit": 626
 }
