@@ -169,7 +169,7 @@ public class StockPortfolioUI extends JFrame {
         addSaveButton();
         searchCategoriesButton.addActionListener(new ActionListener() {
             @Override
-            //MOFIFIES: this
+            //MODIFIES: this
             //EFFECTS: assigns a new filter to the table object to filter based on the text in JTextField
             public void actionPerformed(ActionEvent e) {
                 String searchText = categoriesSearchField.getText();
@@ -317,6 +317,7 @@ public class StockPortfolioUI extends JFrame {
     // Represents the actions to be taken when user wants to add stock
     private class AddStockAction extends AbstractAction {
 
+        // EFFECTS: creates an instance of the add stock action with the name "Add Stock"
         AddStockAction() {
             super("Add Stock");
         }
@@ -344,6 +345,7 @@ public class StockPortfolioUI extends JFrame {
     // Represents the actions to be taken when user wants to sell a stock
     private class SellStockAction extends AbstractAction {
 
+        // EFFECTS: creates an instance of the SellStockAction with the name "Sell Stock"
         private SellStockAction() {
             super("Sell Stock");
         }
@@ -411,7 +413,7 @@ public class StockPortfolioUI extends JFrame {
     private class LoadListener implements ActionListener {
 
         // MODIFIES: this
-        //EFFECTS: loads the json data from file when user clicks the load button
+        // EFFECTS: loads the json data from file when user clicks the load button
         @Override
         public void actionPerformed(ActionEvent e) {
             loadPortfolio();

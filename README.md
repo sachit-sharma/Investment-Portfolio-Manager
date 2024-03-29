@@ -36,8 +36,8 @@ It would ensure that I am meeting my goals of making regular and diverse investm
 
 - You can generate the first required action related to the user story "adding multiple Xs to a Y" by clicking the
   add stock menu item in the portfolio menu
-- You can generate the second required action related to the user story "adding multiple Xs to a Y" by searching which
-  category of stock you want to find
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by clicking the sell
+  menu item in the portfolio menu
 - You can locate my visual component in the home screen on the right panel (an image of the stock market)
 - You can save the state of my application by clicking the save button.
 - You can reload the state of my application by clicking the load button. 

@@ -12,7 +12,7 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// Represents the interface of the Stock Portfolio Application
+// Represents the console based user interface of the Stock Portfolio Application
 public class StockPortfolioApp {
     private static final String JSON_STORE = "./data/portfolio.json";
     private StockPortfolio portfolio;
