@@ -41,3 +41,23 @@ It would ensure that I am meeting my goals of making regular and diverse investm
 - You can locate my visual component in the home screen on the right panel (an image of the stock market)
 - You can save the state of my application by clicking the save button.
 - You can reload the state of my application by clicking the load button. 
+
+## Phase 4 Task 2:
+
+- A representative set of events that may happen are:
+
+1. Adding a Stock named "X" to the portfolio.
+2. Adding a Stock named "Y" to the portfolio.
+3. Adding a Stock named "Z" to the portfolio.
+3. Selling the stock named "Y" at a price 100
+
+This looks like:
+
+  - Tue Apr 02 11:45:36 PDT 2024 
+   Added X to portfolio 
+  - Tue Apr 02 11:45:42 PDT 2024
+   Added Y to portfolio
+  -  Tue Apr 02 11:45:51 PDT 2024
+   Added Z to portfolio
+   - Tue Apr 02 11:46:00 PDT 2024
+   Sold Y at 100.0

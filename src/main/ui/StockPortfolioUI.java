@@ -1,5 +1,8 @@
 package ui;
 
+
+import model.EventLog;
+import model.Event;
 import model.Stock;
 import model.StockPortfolio;
 import persistence.JsonReader;
@@ -11,8 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -62,7 +64,20 @@ public class StockPortfolioUI extends JFrame {
         addBottomPanel();
         addTable();
         addRightPanel();
+        this.addWindowListener(createListener());
         setVisible(true);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: returns a window listener that prints a log
+    private WindowListener createListener() {
+        return new WindowAdapter() {
+            @Override
+            // EFFECTS: performs the action of printing the log on the console
+            public void windowClosing(WindowEvent e) {
+                printlog(EventLog.getInstance());
+            }
+        };
     }
 
     // MODIFIES: this
@@ -313,6 +328,15 @@ public class StockPortfolioUI extends JFrame {
 
     }
 
+    //EFFECTS: prints the event log to console
+    private void printlog(EventLog el) {
+
+        for (Event next: el) {
+            System.out.println(next.toString());
+        }
+
+
+    }
 
     // Represents the actions to be taken when user wants to add stock
     private class AddStockAction extends AbstractAction {

@@ -35,8 +35,8 @@ public class StockPortfolio implements Writable {
     // MODIFIES: this
     // EFFECTS:  adds a new stock to the end of  list of stocks in portfolio
     public void addStock(Stock stock) {
+        EventLog.getInstance().logEvent(new Event("Added " + stock.getName() + " to portfolio"));
         portfolio.add(stock);
-
     }
 
     // REQUIRES: stock portfolio needs to be non-empty
@@ -71,6 +71,7 @@ public class StockPortfolio implements Writable {
                 s.setCurrentPrice(sellingPrice);
                 stockProfit = s.calculateTotalReturn();
                 realisedProfit += stockProfit;
+                EventLog.getInstance().logEvent(new Event("Sold " + s.getName() + " at " + sellingPrice));
                 portfolio.remove(s);
                 return true;
             }
@@ -93,6 +94,7 @@ public class StockPortfolio implements Writable {
     // MODIFIES: this
     // EFFECTS: updates the currentPrice of the stock with given id
     public void updateCurrentPrice(int id, double currentPrice) {
+        EventLog.getInstance().logEvent(new Event("Updated price of stock number" + id + " to " + currentPrice));
         getStockWithId(id).setCurrentPrice(currentPrice);
     }
 
