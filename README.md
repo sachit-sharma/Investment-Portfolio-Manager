@@ -42,7 +42,7 @@ It would ensure that I am meeting my goals of making regular and diverse investm
 - You can save the state of my application by clicking the save button.
 - You can reload the state of my application by clicking the load button. 
 
-## Phase 4 Task 2:
+### Phase 4 Task 2:
 
 - A representative set of events that may happen are:
 
@@ -61,3 +61,19 @@ This looks like:
    Added Z to portfolio
    - Tue Apr 02 11:46:00 PDT 2024
    Sold Y at 100.0
+
+### Pase 4 Task 3:
+
+Looking at my UML diagram, I believe that I could have split Stock Portfolio into two classes- a profit manager and stocks list class. 
+Currently, my stock portfolio has two responsibilities: to maintain a list of all stocks and calculate the total realised profit. This change can thus increase 
+cohesion according to the single responsibility principle. Additonally, since I want the profit manager to only have a single instance, I would have considered using the singleton pattern
+here. 
+
+Another area where I might have worked on, if I had more time, is making my classes robust. I was not able to make the methods in the Stock Portfolio and Stock classes robust, 
+so I would like to throw and catch exceptions instead of relying on user input. For example, 
+in my design, I am relying on the user to provide the right category of Stocks (out of the 7 categories I have), but it would be better if I used exception handling.
+Lastly, I would have made a new class (an enum) for the categories of my stocks as this would allow me to easily add or change categories in my app.
+In my current design, changing a category would involve changes to many different methods and would be an extremely tedious task. Having a class dedicated to the stock categories, would allow me 
+to add or remove categories easily. 
+
+
