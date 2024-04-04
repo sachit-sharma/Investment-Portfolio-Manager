@@ -66,8 +66,8 @@ This looks like:
 
 Looking at my UML diagram, I believe that I could have split Stock Portfolio into two classes- a profit manager and stocks list class. 
 Currently, my stock portfolio has two responsibilities: to maintain a list of all stocks and calculate the total realised profit. This change can thus increase 
-cohesion according to the single responsibility principle. Additonally, since I want the profit manager to only have a single instance, I would have considered using the singleton pattern
-here. 
+cohesion according to the single responsibility principle. Additionally, since I want the profit manager to observe when a stock has been sold, I would have implemented the observer pattern. 
+Whenever a stock is removed in a portfolio, I would want the profit manager to calculate the current realised profit, and print out how much profit has been made. 
 
 Another area where I might have worked on, if I had more time, is making my classes robust. I was not able to make the methods in the Stock Portfolio and Stock classes robust, 
 so I would like to throw and catch exceptions instead of relying on user input. For example, 
